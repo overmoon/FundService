@@ -1,0 +1,16 @@
+[Mysql]
+GETFUNDDEF=select * from fundamentalInfo where fname in (:fields);
+GETALLFUNDDEF=select * from fundamentalInfo;
+
+[Oracle]
+GETCODE=select COMCODE,SECUCODE from CENTER_ADMIN.PUB_SECURITIESMAIN where tradingcode=':code' and :exchange and DelistingDate is null and exchangecode in (101,105)order by secucategorycodeI asc,exchangecode asc
+GETCCAINFO=select to_char(A.exdividate,'yyyymmdd') as cca_date, A.dividend_ratio, A.cashbtax as dividend, B.placingprice as distribution, B.placingratioactu as distribution_ratio from ( select exdividate, (bonusratio + transferratio) as dividend_ratio, cashbtax from  CENTER_ADMIN.stk_adjustfactor where  secucode = ':secucode' and exdividate > to_date(':date' , 'yyyymmdd')) A left join ( select exdividate, placingprice, placingratioactu from CENTER_ADMIN.stk_placingshare where secucode = ':secucode' and exdividate > to_date(':date' , 'yyyymmdd')) B on A.exdividate = B.exdividate order by A.exdividate ASC
+CENTER_ADMIN.PUB_SECURITIESMAIN=select TO_CHAR(ListingDate,'YYYY/MM/DD') as fund_date, TO_CHAR(nvl(DelistingDate, sysdate),'YYYY/MM/DD') as period_date, EntryTime as record_date,:fields from :table where secucode=':secucode'
+CENTER_ADMIN.COM_SHARECHANGE=select TO_CHAR(EntryTime,'YYYY/MM/DD') as fund_date, TO_CHAR(enddate,'YYYY/MM/DD') as period_date, TO_CHAR(pubdate,'YYYY/MM/DD') as record_date, :fields from :table where comcode=':comcode' order by enddate desc
+CENTER_ADMIN.COM_MAINFINADATANAS=select TO_CHAR(startdate,'YYYY/MM/DD') as fund_date , TO_CHAR(enddate,'YYYY/MM/DD') as period_date, TO_CHAR(pubdate,'YYYY/MM/DD') as record_date, :fields from :table where comcode=':comcode' and dataflag=101 order by enddate desc
+CENTER_ADMIN.COM_MAINFINAINDEXNAS=select TO_CHAR(startdate,'YYYY/MM/DD') as fund_date , TO_CHAR(enddate,'YYYY/MM/DD') as period_date, TO_CHAR(pubdate,'YYYY/MM/DD') as record_date, :fields from :table where comcode=':comcode' and dataflag=101 order by enddate desc
+
+[Market]
+Market.1=105
+Market.2=101
+Market.3=161

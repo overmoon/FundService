@@ -1,0 +1,5 @@
+mysql_dh.db.conf=mysql_dh.prop
+oracle_gao.db.conf=oracle_gao.prop
+
+[log file Config]
+logfile=DBConnectionManager.log

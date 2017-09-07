@@ -1,0 +1,45 @@
+#连接设置
+driverClassName=oracle.jdbc.driver.OracleDriver
+url=jdbc:oracle:thin:@128.9.0.14:1521:wszx14
+username=test
+password=test
+
+#<!-- 初始化连接 -->
+initialSize=10
+
+#最大链接数量
+maxActive=50
+
+#<!-- 最大空闲连接 -->
+maxIdle=20
+
+#<!-- 最小空闲连接 -->
+minIdle=5
+
+#<!-- 超时等待时间 以毫秒为单位 60000毫秒/1000等于60秒 -->
+maxWait=60000
+
+validationQuery=select 1 from dual
+testOnBorrow=false
+testOnReturn=false
+testWhileIdle=true
+# 每30秒运行一次空闲连接回收器
+timeBetweenEvictionRunsMillis=30000
+# 在每次空闲连接回收器线程(如果有)运行时检查的连接数量
+numTestsPerEvictionRun =3
+# 池中的连接空闲30分钟后被回收,默认值就是30分钟。
+minEvictableIdleTimeMillis=300000
+
+#JDBC驱动建立连接时附带的连接属性属性格式必须为：[属性名=property;]
+connectionProperties=useUnicode=true;characterEncoding=UTF8
+
+#指定由连接池所创建的连接自动提交（auto-commit）状态。
+defaultAutoCommit=true
+
+#driver default 指定由连接池所创建的链接的只读（read-only）状态。
+#如果没有设置该值，则"setReadOnly"方法将不被调用。（某些驱动并不支持只读模式，如：Informix）
+#defaultReadOnly=
+
+#driver default 指定由连接池所创建的连接事务级别（TransactionIsolation）
+#通过这个池创建连接的默认事务策略，设置值为下列中的某一个： (参考 javadoc)，NONE，READ_COMMITTED，READ_UNCOMMITTED，REPEATABLE_READ，SERIALIZABLE
+defaultTransactionIsolation=READ_COMMITTED
